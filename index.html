@@ -284,10 +284,10 @@
                 codeCSS["font-family"] = UI.fontFamily;
             }
             function replaceWhitespace(match){
-                return match.replace(/\s/g,"&nbsp");
+                return match.replace(/\t/g,"&nbsp&nbsp&nbsp&nbsp").replace(/ /g,"&nbsp");
             }
             $('#hljs').html(
-                result.value.replace(/\n/g, "<br/>").replace(/(\s{2,})/g,replaceWhitespace)
+                result.value.replace(/\n/g, "<br/>").replace(/(\s{2,}|\t)/g,replaceWhitespace)
             ).css(codeCSS);
 
             var stats = result.language + ': ' + result.r;
