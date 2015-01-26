@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Syntax Highlighting For Evernote</title>
+    <meta charset="utf-8">
+    <!--
+    # shell  command for generate
+    cd styles
+    for i in $(ls *\.css); do  echo "<link rel=\"alternate stylesheet\" title=\"${i//.css/}\" href=\"styles/${i}\">"; done;
+    -->
+    <link rel="alternate stylesheet" title="arta" href="styles/arta.css">
+    <link rel="alternate stylesheet" title="ascetic" href="styles/ascetic.css">
+    <link rel="alternate stylesheet" title="atelier-dune.dark" href="styles/atelier-dune.dark.css">
+    <link rel="alternate stylesheet" title="atelier-dune.light" href="styles/atelier-dune.light.css">
+    <link rel="alternate stylesheet" title="atelier-forest.dark" href="styles/atelier-forest.dark.css">
+    <link rel="alternate stylesheet" title="atelier-forest.light" href="styles/atelier-forest.light.css">
+    <link rel="alternate stylesheet" title="atelier-heath.dark" href="styles/atelier-heath.dark.css">
+    <link rel="alternate stylesheet" title="atelier-heath.light" href="styles/atelier-heath.light.css">
+    <link rel="alternate stylesheet" title="atelier-lakeside.dark" href="styles/atelier-lakeside.dark.css">
+    <link rel="alternate stylesheet" title="atelier-lakeside.light" href="styles/atelier-lakeside.light.css">
+    <link rel="alternate stylesheet" title="atelier-seaside.dark" href="styles/atelier-seaside.dark.css">
+    <link rel="alternate stylesheet" title="atelier-seaside.light" href="styles/atelier-seaside.light.css">
+    <link rel="alternate stylesheet" title="brown_paper" href="styles/brown_paper.css">
+    <link rel="alternate stylesheet" title="codepen-embed" href="styles/codepen-embed.css">
+    <link rel="alternate stylesheet" title="color-brewer" href="styles/color-brewer.css">
+    <link rel="alternate stylesheet" title="dark" href="styles/dark.css">
+    <link rel="alternate stylesheet" title="default" href="styles/default.css">
+    <link rel="alternate stylesheet" title="docco" href="styles/docco.css">
+    <link rel="alternate stylesheet" title="far" href="styles/far.css">
+    <link rel="alternate stylesheet" title="foundation" href="styles/foundation.css">
+    <link rel="alternate stylesheet" title="github" href="styles/github.css">
+    <link rel="alternate stylesheet" title="googlecode" href="styles/googlecode.css">
+    <link rel="alternate stylesheet" title="hybrid" href="styles/hybrid.css">
+    <link rel="alternate stylesheet" title="idea" href="styles/idea.css">
+    <link rel="alternate stylesheet" title="ir_black" href="styles/ir_black.css">
+    <link rel="alternate stylesheet" title="kimbie.dark" href="styles/kimbie.dark.css">
+    <link rel="alternate stylesheet" title="kimbie.light" href="styles/kimbie.light.css">
+    <link rel="alternate stylesheet" title="magula" href="styles/magula.css">
+    <link rel="alternate stylesheet" title="mono-blue" href="styles/mono-blue.css">
+    <link rel="alternate stylesheet" title="monokai" href="styles/monokai.css">
+    <link rel="alternate stylesheet" title="monokai_sublime" href="styles/monokai_sublime.css">
+    <link rel="alternate stylesheet" title="obsidian" href="styles/obsidian.css">
+    <link rel="alternate stylesheet" title="paraiso.dark" href="styles/paraiso.dark.css">
+    <link rel="alternate stylesheet" title="paraiso.light" href="styles/paraiso.light.css">
+    <link rel="alternate stylesheet" title="pojoaque" href="styles/pojoaque.css">
+    <link rel="alternate stylesheet" title="railscasts" href="styles/railscasts.css">
+    <link rel="alternate stylesheet" title="rainbow" href="styles/rainbow.css">
+    <link rel="alternate stylesheet" title="school_book" href="styles/school_book.css">
+    <link rel="alternate stylesheet" title="solarized_dark" href="styles/solarized_dark.css">
+    <link rel="alternate stylesheet" title="solarized_light" href="styles/solarized_light.css">
+    <link rel="alternate stylesheet" title="sunburst" href="styles/sunburst.css">
+    <link rel="alternate stylesheet" title="tomorrow-night-blue" href="styles/tomorrow-night-blue.css">
+    <link rel="alternate stylesheet" title="tomorrow-night-bright" href="styles/tomorrow-night-bright.css">
+    <link rel="alternate stylesheet" title="tomorrow-night-eighties" href="styles/tomorrow-night-eighties.css">
+    <link rel="alternate stylesheet" title="tomorrow-night" href="styles/tomorrow-night.css">
+    <link rel="alternate stylesheet" title="tomorrow" href="styles/tomorrow.css">
+    <link rel="alternate stylesheet" title="vs" href="styles/vs.css">
+    <link rel="alternate stylesheet" title="xcode" href="styles/xcode.css">
+    <link rel="alternate stylesheet" title="zenburn" href="styles/zenburn.css">
+
+    <link href='styles/fonts.css' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="js/highlight.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+</head>
+<style>
+    body{
+        margin: 20px;
+    }
+    #editor textarea {
+        display: block;
+        width: 100%;
+        height: 15em;
+        resize: vertical;
+        font-family: 'Source Code Pro', Menlo, Courier, monospace, 'Lantinghei SC', 'Hiragino Sans GB', STXihei,'华文细黑', 'Microsoft YaHei', '微软雅黑', SimSun, '宋体', Heiti, '黑体',sans-serif;
+    }
+    pre code,
+    pre output {
+        display: block;
+    }
+    pre output {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: scroll;
+        padding: 0.5em;
+        background: #F0F0F0;
+        word-wrap: break-word;
+        resize: vertical;
+    }
+    a{
+        color: #777;
+        text-decoration:none;
+    }
+    .button {
+        margin-left: 10px;
+        background-color:#bdc3c7;
+        font-size:13px;
+        text-decoration:none;
+        color:#333;
+        position:relative;
+        padding:10px 20px;
+        border-left:solid 1px #d3d8db;
+        border-radius: 5px;
+        box-shadow: inset 0px 1px 0px #dcdfe1, 0px 5px 0px 0px #7f8c8d, 0px 10px 5px rgba(39, 39, 39, 0.8);
+    }
+    .button:hover {
+        top:7px;
+        color: #95a5a6;
+        background-image: linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
+        box-shadow: inset 0px 1px 0px #ecf0f1, 0px 1px 0px 0px #7f8c8d, 0px 2px 5px rgba(39, 39, 39, 0.8);
+        text-shadow: 0px 1px 1px rgba(255,255,255,0.3);
+    }
+    .button-primary {
+        color: #fff;
+        background-color: #3498db;
+        border-left:solid 1px #6fbaec;
+        box-shadow: inset 0px 1px 0px #73b0d8, 0px 6px 0px #2980b9, 0px 10px 5px rgba(39, 39, 39, 0.8);
+    }
+    .button-primary:hover {
+        color: #2980b9;
+        box-shadow: inset 0px 1px 0px #73b0d8, 0px 1px 0px 0px #2980b9, 0px 2px 5px rgba(39, 39, 39, 0.8);
+    }
+
+    #hljs{
+        font-family: 'Source Code Pro', Menlo, Courier, monospace, 'Lantinghei SC', 'Hiragino Sans GB', STXihei,'华文细黑', 'Microsoft YaHei', '微软雅黑', SimSun, '宋体', Heiti, '黑体',sans-serif;
+        display: block;
+    }
+    #menu{
+        line-height: 50px;
+        font-size: 18px;
+    }
+    #menu button{
+        padding: 10px;
+        border: 1px solid #2A5D97;
+    }
+    #menu button:hover{
+        background-color: #0A8DCE;
+    }
+    #fontFamily{
+        width: 250px;
+        line-height: 25px;
+        display: none;
+    }
+    #message{
+        padding:  10px 20px;
+        background-color: #3498DE;
+        color: #FFF;
+        border-left: solid 1px #6FBAEC;
+        border-radius: 5px;
+        font-size: 20px;
+        text-align: center;
+    }
+    footer{
+        text-align: center;
+    }
+</style>
+
+<script>
+    var UI = {
+        language : null,
+        style : null,
+        fontSize : null,
+        fontFamily :  null,
+        useNewFontFamily :  false,
+        languageKey : "syfe-l",
+        styleKey: "syfe-s",
+        fontSizeKey :  "syfe-fs",
+        fontFamilyKey :  "syfe-ff",
+        useNewFontFamilyKey : "syfe-u-ff",
+        PressKey : (navigator.platform.toUpperCase().indexOf('MAC')!==-1) ? "Command": "Control",
+        cookieExpiresDate : { expires: (new Date("2100")) },
+
+        init : function(){
+            this.language = $.cookie(this.languageKey) || "(Auto)";
+            this.style = $.cookie(this.styleKey) || "github";
+            this.fontSize = $.cookie(this.fontSizeKey) || 12;
+            this.fontFamily = $.cookie(this.fontFamilyKey) || "";
+            this.useNewFontFamily = ($.cookie(this.useNewFontFamilyKey)=="1") ? 1 : 0;
+            $("#message").html("Now, Press the key <strong>"+ this.PressKey +"+C</strong>, Copy to clipboard. Go to Evernot <strong>Paste</strong>.");
+
+            this.initLanguages();
+            this.initStyles();
+            this.initFontSize();
+            this.initFontFamily();
+        },
+        initLanguages : function () {
+            var languages = $('#languages');
+            hljs.listLanguages().sort().forEach(function (l) {
+                languages.append('<option>' + l + '</option>');
+            });
+            if( this.language ){
+                languages.val( this.language );
+            };
+            languages.change(function(){
+                UI.language = $(this).val();
+                $('#highlighting').click();
+            });
+        },
+        initStyles :  function () {
+            var styles = $('#styles');
+            $('link[title]').each(function(i, link) {
+                styles.append('<option>' + link.title + '</option>');
+            });
+            if( this.style ){
+                styles.val( this.style );
+            }
+            styles.change(function(){
+                UI.style = $(this).val();
+                $('#highlighting').click();
+            });
+        },
+        initFontSize :  function () {
+            var fontSize = $("#fontSize");
+            for( var i = 10; i <= 40; i++){
+                fontSize.append('<option>' + i + '</option>');
+            }
+            if( this.fontSize ){
+                fontSize.val( this.fontSize );
+            }
+            fontSize.change(function(){
+                UI.fontSize = $(this).val();
+                $('#highlighting').click();
+            });
+        },
+        initFontFamily :  function () {
+            var fontFamily = $("#fontFamily")
+            var useNewFontFamily = $("#useNewFontFamily");
+
+            fontFamily.val(this.fontFamily);
+            fontFamily.bind("change paste keyup",function () {
+                UI.fontFamily = $(this).val();
+            });
+
+            if(this.useNewFontFamily){
+                useNewFontFamily.click();
+                fontFamily.show();
+            }
+            useNewFontFamily.click(function(){
+                if( $(this).is(':checked') ){
+                    UI.useNewFontFamily = 1;
+                    fontFamily.fadeIn();
+                }else{
+                    UI.useNewFontFamily = 0;
+                    fontFamily.fadeOut();
+                }
+            });
+        },
+        save : function() {
+            $.cookie(this.languageKey, this.language, this.expiresDate );
+            $.cookie(this.styleKey, this.style, this.expiresDate );
+            $.cookie(this.fontSizeKey, this.fontSize, this.expiresDate );
+            $.cookie(this.fontFamilyKey , this.fontFamily , this.expiresDate);
+            $.cookie(this.useNewFontFamilyKey , this.useNewFontFamily , this.expiresDate);
+        },
+        updateStyle : function (){
+            $('link[title]').each(function (i, link) {
+                // must be disabled first
+                link.disabled = true;
+                link.disabled = (link.title != UI.style);
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        UI.init();
+
+        $('#highlighting').click(function () {
+            var message = $("#message");
+            message.hide();
+
+            var source = $("#source").val().trim();
+            if (source == ""){
+              $("#source").focus();
+              return false;
+            }
+
+            var result = hljs.getLanguage(UI.language) ? hljs.highlight(UI.language, source) : hljs.highlightAuto(source);
+            var codeCSS = {
+                "font-size" : UI.fontSize + "px"
+                ,"line-height" : (parseInt(UI.fontSize) + 4) +"px"
+            };
+            if(UI.useNewFontFamily && UI.fontFamily){
+                codeCSS["font-family"] = UI.fontFamily;
+            }
+            function replaceWhitespace(match){
+                return match.replace(/\s/g,"&nbsp");
+            }
+            $('#hljs').html(
+                result.value.replace(/\n/g, "<br/>").replace(/(\s{2,})/g,replaceWhitespace)
+            ).css(codeCSS);
+
+            var stats = result.language + ': ' + result.r;
+            if (result.second_best) {
+                stats += ', ' +
+                    result.second_best.language + ': ' + result.second_best.r;
+            }
+            $('#stats').text(stats);
+            $('output').text(result.value);
+
+            UI.updateStyle();
+
+            //select the code
+            var range = document.createRange();
+            var sc = document.getElementById("sContainer");
+            var ec = document.getElementById("eContainer");
+            range.setStartAfter(sc);
+            range.setEndBefore(ec);
+            var s = window.getSelection();
+            if(s.rangeCount>0){
+                s.removeAllRanges();
+            }
+            s.addRange(range);
+
+            message.fadeIn();
+
+            UI.save();
+            return false;
+        });
+
+        $('#highlighting').click();
+    });
+</script>
+<body>
+    <h1>Syntax Highlighting For Evernote (only working in Chrome)</h1>
+    <div id="editor">
+        <div>
+            <textarea id="source" placeholder="paste your code" ></textarea>
+            <p id="menu">
+                Language:
+                <select id="languages">
+                    <option>(Auto)</option>
+                </select>
+                Style:
+                <select id="styles"></select>
+                Font Size:
+                <select id="fontSize"></select>
+                <input id="useNewFontFamily" name="useNewFontFamily" type="checkbox" />Change Font
+                <input id="fontFamily" value="" placeholder="'Source Code Pro', Menlo, Courier, monospace, 'Lantinghei SC', 'Hiragino Sans GB', STXihei,'华文细黑', 'Microsoft YaHei', '微软雅黑', SimSun, '宋体', Heiti, '黑体',sans-serif">
+                <a id="highlighting" href="#" class="button button-primary">Highlighting</a>
+            </p>
+            <p id="message"></p>
+        </div>
+        <div>
+            <p id="sContainer">Rendering [<span id="stats" class="stats">...</span>]</p>
+            <div id="hljs" class="hljs"></div>
+            <p id="eContainer">.</p>
+        </div>
+        <div>
+            <p>Markup
+                <pre><output></output></pre>
+            </p>
+        </div>
+    </div>
+    <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="images/ribbon.png" alt="Fork me on GitHub" data-canonical-src="images/forkme_right_white_ffffff.png"></a>
+    <footer>
+        <div>Power by <a href="https://highlightjs.org/">highlight.js</a></div>
+        <div style="margin-top:10px;">Create by <a href="https://github.com/leolovenet"> liu lei </a></div>
+    </footer>
+</body>
+</html>
