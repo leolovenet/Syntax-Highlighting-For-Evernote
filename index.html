@@ -185,7 +185,7 @@
             this.fontSize = $.cookie(this.fontSizeKey) || 12;
             this.fontFamily = $.cookie(this.fontFamilyKey) || "";
             this.useNewFontFamily = ($.cookie(this.useNewFontFamilyKey)=="1") ? 1 : 0;
-            $("#message").html("Now, Press the key <strong>"+ this.PressKey +"+C</strong>, Copy to clipboard. Go to Evernot <strong>Paste</strong>.");
+            $("#message").html("Now, Press the key <strong>"+ this.PressKey +"+C</strong>, Copy to clipboard. Back to Evernot <strong>Paste</strong>.");
 
             this.initLanguages();
             this.initStyles();
@@ -277,7 +277,7 @@
             var message = $("#message");
             message.hide();
 
-            var source = $("#source").val().trim();
+            var source = $("#source").val();
             if (source == ""){
               $("#source").focus();
               return false;
@@ -294,9 +294,12 @@
             function replaceWhitespace(match){
                 return match.replace(/\t/g,"&nbsp&nbsp&nbsp&nbsp").replace(/ /g,"&nbsp");
             }
-            $('#hljs').html(
-                result.value.replace(/\n/g, "<br/>").replace(/(\s{2,}|\t)/g,replaceWhitespace)
-            ).css(codeCSS);
+            var newhtml = "";
+            result.value.split("\n").forEach(function(u){
+                newhtml += u.replace(/(^ \S| {2,}|\t)/g,replaceWhitespace) + "<br/>";
+            });
+            console.log(newhtml);
+            $('#hljs').html( newhtml.replace(/(<br\/>)*$/g,"") ).css(codeCSS);
 
             var stats = result.language + ': ' + result.r;
             if (result.second_best) {
@@ -325,8 +328,9 @@
             UI.save();
             return false;
         });
-
         $('#highlighting').click();
+
+        $('#source').focus(function() { $(this).select(); });
     });
 </script>
 <body>
