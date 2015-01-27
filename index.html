@@ -67,6 +67,14 @@
     body{
         margin: 20px;
     }
+    #head{
+        margin-bottom: 10px;
+    }
+    #head h1{
+        width: 400px;
+        display: inline;
+        margin-right: 20px;
+    }
     #editor textarea {
         display: block;
         width: 100%;
@@ -322,7 +330,7 @@
     });
 </script>
 <body>
-    <h1>Syntax Highlighting For Evernote (only working in Chrome)</h1>
+    <div id="head"><h1>Syntax Highlighting For Evernote</h1> <strong>Only tested in Chrome and Safari</strong></div>
     <div id="editor">
         <div>
             <textarea id="source" placeholder="paste your code" ></textarea>
