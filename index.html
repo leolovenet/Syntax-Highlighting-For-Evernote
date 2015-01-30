@@ -167,6 +167,8 @@
 <script>
     var UI = {
         language : null,
+        isAllLanguage :  false,
+        loadingMoreStr : "loading more ...",
         style : null,
         fontSize : null,
         fontFamily :  null,
@@ -193,16 +195,28 @@
             this.initFontFamily();
         },
         initLanguages : function () {
-            var languages = $('#languages');
+            var languages = $('#languages'), sign = false;
+            languages.append('<option>(Auto)</option>');
             hljs.listLanguages().sort().forEach(function (l) {
                 languages.append('<option>' + l + '</option>');
+                if ( l == UI.language ) sign = true;
             });
-            if( this.language ){
-                languages.val( this.language );
-            };
-            languages.change(function(){
-                UI.language = $(this).val();
-                $('#highlighting').click();
+            if (!sign) this.language = "(Auto)";
+            if(!this.isAllLanguage) languages.append('<option>'+ this.loadingMoreStr +'</option>');
+
+            languages.val( this.language ).change(function(){
+                var language = $(this).val();
+                if( language == UI.loadingMoreStr ){
+                    hljs = null;
+                    $.getScript("js/highlight.all.js",function(){
+                        $('#languages').html("");
+                        UI.isAllLanguage = true;
+                        UI.initLanguages();
+                    });
+                }else{
+                    UI.language = language;
+                    $('#highlighting').click();
+                }
             });
         },
         initStyles :  function () {
@@ -340,9 +354,7 @@
             <textarea id="source" placeholder="paste your code" ></textarea>
             <p id="menu">
                 Language:
-                <select id="languages">
-                    <option>(Auto)</option>
-                </select>
+                <select id="languages"></select>
                 Style:
                 <select id="styles"></select>
                 Font Size:
